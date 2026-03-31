@@ -1,0 +1,157 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "DM Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-headline: "Space Grotesk", sans-serif;
+  --font-syne: "Syne", sans-serif;
+
+  --color-background: #0e0e13;
+  --color-surface: #14141b;
+  --color-surface-high: #1c1c25;
+  --color-surface-highest: #26262f;
+  --color-border: #1e1e2e;
+  --color-border-bright: #2e2e42;
+
+  --color-primary: #7c6dfa;
+  --color-primary-light: #a99dfc;
+  --color-primary-dim: #7c6dfa22;
+
+  --color-teal: #00d9a6;
+  --color-teal-dim: #00d9a622;
+
+  --color-amber: #f59e0b;
+  --color-amber-dim: #f59e0b22;
+
+  --color-red: #f43f5e;
+  --color-red-dim: #f43f5e22;
+
+  --color-text: #e2e0f0;
+  --color-muted: #6b6b85;
+  --color-muted-bright: #9494b0;
+}
+
+@layer base {
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    @apply bg-background text-text font-sans antialiased;
+    overflow-x: hidden;
+  }
+
+  ::-webkit-scrollbar { width: 4px; height: 4px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: var(--color-border-bright); border-radius: 4px; }
+
+  input, textarea {
+    font-family: var(--font-sans);
+  }
+}
+
+@layer components {
+  .glass {
+    background: rgba(20, 20, 27, 0.7);
+    backdrop-filter: blur(20px);
+  }
+
+  .card {
+    @apply bg-surface rounded-2xl border border-border;
+  }
+
+  .card-high {
+    @apply bg-surface-high rounded-2xl border border-border;
+  }
+
+  .btn-primary {
+    background: linear-gradient(135deg, var(--color-primary), #5b4ef7);
+    @apply text-white font-semibold rounded-xl transition-all duration-200;
+    font-family: var(--font-headline);
+  }
+
+  .btn-primary:hover {
+    filter: brightness(1.1);
+    transform: translateY(-1px);
+  }
+
+  .btn-primary:active {
+    transform: translateY(0);
+  }
+
+  .glow-primary {
+    box-shadow: 0 0 40px rgba(124, 109, 250, 0.15);
+  }
+
+  .badge-high {
+    @apply px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider;
+    background: var(--color-teal-dim);
+    color: var(--color-teal);
+    border: 1px solid rgba(0, 217, 166, 0.2);
+  }
+
+  .badge-medium {
+    @apply px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider;
+    background: var(--color-amber-dim);
+    color: var(--color-amber);
+    border: 1px solid rgba(245, 158, 11, 0.2);
+  }
+
+  .badge-low {
+    @apply px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider;
+    background: var(--color-red-dim);
+    color: var(--color-red);
+    border: 1px solid rgba(244, 63, 94, 0.2);
+  }
+
+  .badge-build {
+    @apply px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider;
+    background: var(--color-primary-dim);
+    color: var(--color-primary-light);
+    border: 1px solid rgba(124, 109, 250, 0.2);
+  }
+
+  .badge-extend {
+    @apply px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider;
+    background: var(--color-teal-dim);
+    color: var(--color-teal);
+    border: 1px solid rgba(0, 217, 166, 0.2);
+  }
+
+  .badge-defer {
+    @apply px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider;
+    background: var(--color-amber-dim);
+    color: var(--color-amber);
+    border: 1px solid rgba(245, 158, 11, 0.2);
+  }
+
+  .input-field {
+    @apply w-full bg-surface-high border border-border rounded-xl px-4 py-3 text-text text-sm outline-none transition-all duration-200;
+    font-family: var(--font-sans);
+  }
+
+  .input-field:focus {
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px rgba(124, 109, 250, 0.1);
+  }
+
+  .input-field::placeholder {
+    color: var(--color-muted);
+  }
+}
+
+/* Typing indicator animation */
+@keyframes bounce-dot {
+  0%, 80%, 100% { transform: translateY(0); opacity: 0.4; }
+  40% { transform: translateY(-6px); opacity: 1; }
+}
+
+.dot-1 { animation: bounce-dot 1.2s ease-in-out infinite; }
+.dot-2 { animation: bounce-dot 1.2s ease-in-out 0.2s infinite; }
+.dot-3 { animation: bounce-dot 1.2s ease-in-out 0.4s infinite; }
+
+/* Pulse glow for active indicator */
+@keyframes pulse-glow {
+  0%, 100% { opacity: 1; box-shadow: 0 0 6px var(--color-teal); }
+  50% { opacity: 0.6; box-shadow: 0 0 12px var(--color-teal); }
+}
+.pulse-teal {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
